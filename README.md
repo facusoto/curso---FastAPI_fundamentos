@@ -38,8 +38,8 @@ def home():
 Y luego iniciamos el proyecto en nuestra consola a través del código
 `uvicorn main:app --reload`
 
-|uvicorn| main|:app| --reload|
-|----|--|--|--|--|--|--|
+|uvicorn|main|:app| --reload|
+|--|--|--|--|
 |Librería que permite el deploy web|Nombre del archivo|Nombre de la instancia|Permite la recarga ante cambios|
 
 El resultado http://127.0.0.1:8000/ en entonces será:
