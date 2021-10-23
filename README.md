@@ -37,9 +37,11 @@ def home():
 ```
 Y luego iniciamos el proyecto en nuestra consola a través del código
 `uvicorn main:app --reload`
+
 |uvicorn| main|:app| --reload|
 |----|--|--|--|--|--|--|
 |Librería que permite el deploy web|Nombre del archivo|Nombre de la instancia|Permite la recarga ante cambios|
+
 El resultado http://127.0.0.1:8000/ en entonces será:
 `{"Hello": "World"}`
 
@@ -63,18 +65,19 @@ Lo mismo que un route o endpoint, la dirección en la que apunta el link luego d
 
 *¿Qué son las operations?*
 Al igual que los métodos HTTP, las operations nos permiten tener métodos, tales como GET, POST, PUT, DELETE
-|---|Métodos populares|
+|Métodos populares|Traducción|
 |---|---|
 |GET|Obtener|
 |POST|Envío|
 |PUT|Actualizar|
 | DELETE|Borrar|
+
 Ya habíamos utilizado una path operation en el proyecto antes, get
 `@app.get("/")`
 
 ### Path Parameters
 Un Path paramater es una variable definida dentro de un endpoint se utilizan para evitar codear la grabación de nuevas entradas con métodos menos eficientes, cada vez que defino un path paramether es obligatorio pasarlo luego para acceder, el no hacerlo dará error.
-Una dirección puede contener multiples path parameters
+Una dirección puede contener múltiples path parameters
 
 |/tweets/|{tweet_id}|
 |---|---|
