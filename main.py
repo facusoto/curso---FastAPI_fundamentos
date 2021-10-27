@@ -3,7 +3,7 @@ from typing import Optional
 from enum import Enum
 
 # Pydantic
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr, IPvAnyAddress
 
 # importamos el framework
 from fastapi import FastAPI, Body, Query, Path
@@ -21,21 +21,33 @@ class HairColor(Enum):
 
 
 class Location(BaseModel):
-    city: str
-    state: str
-    country: str
+    city: str = Field(
+        ...,
+        max_length=150,
+        min_length=1
+    )
+    state: str = Field(
+        ...,
+        max_length=150,
+        min_length=1
+    )
+    country: str = Field(
+        ...,
+        max_length=150,
+        min_length=1
+    )
 
 
 class Person(BaseModel):
     first_name: str = Field(
         ...,
         min_length=1,
-        max_length=50,
+        max_length=50
         )
     last_name: str = Field(
         ...,
         min_length=1,
-        max_length=50,
+        max_length=50
         )
     age: int = Field(
         ...,
@@ -44,6 +56,8 @@ class Person(BaseModel):
     )
     hair_color: Optional[HairColor] = Field(default=None)
     is_married: Optional[bool] = Field(default=None)
+    ip_address_str: IPvAnyAddress = Field(...)
+    email: Optional[EmailStr] = Field(default=None)
 
 
 # Iniciamos el decorador en el path home
