@@ -145,15 +145,39 @@ También es posible dar mayor contexto a nuestra documentación. Se deben usar l
 
 ### Validaciones: Path Parameters
 ### Validaciones: Request Body
-Es la primera vez utilizando el método Put (actualizar), en este caso dentro del path paramether `person_id` 
+Es la primera vez utilizando el método Put (actualizar), en este caso dentro del path paramether `person_id`
 > `@app.put("/person/detail/{person_id}")`
 
 ![enter image description here](https://i.imgur.com/rWBQud6.png)
 
-Si generáramos más modelos y quisiéramos hacer una request body múltiple podemos hacerlo al añadir éste nuevo diccionario al previo y por lo tanto generar un diccionario de diccionarios el cual FastAPI retornará un único diccionario con todos los datos
+Si generáramos más modelos y quisiéramos hacer una request body múltiple podemos hacerlo al añadir éste nuevo diccionario al previo con el método .dict() y por lo tanto generar un diccionario de diccionarios el cual FastAPI retornará un único diccionario con todos los datos
 
 ```
 results = person.dict()
 results.update(location.dict())
 ```
 
+### Validaciones: Models
+Cuando queramos hacer una validación de un modelo tendremos que hacerlo desde la definición del mismo a través de `pydantic > Field` que funciona igual a las previamente utilizadas
+A través de Field podemos parametrar la entrada de datos que se tendrán del modelo
+
+![](https://i.imgur.com/YvytAWS.png)
+
+A partír de field se asegura que los parámetros sean obligatorios o no, un máximo y mínimo y tambíen un default.
+hair_color es de tipo HairColor ya que creamos un objeto previamente, el cuál contiene los elementos válidos a responder
+
+```
+class HairColor(Enum):
+    white = 'white'
+    black = 'black'
+    brown = 'brown'
+    blonde = 'blonde'
+```
+
+### Tipos de datos especiales
+Tenemos varios tipos de datos clásicos o convencionales como str, int float o bool
+Sin embargo, y teniendo en cuenta que uno puede generar su propio tipo dentro de python, desde Pydantic tenemos varios típos "exóticos", algúnos de ellos són:
+
+![](https://i.imgur.com/SywyWGe.png)
+
+Permiten hacer todo tipo de validaciones sin necesidad de codear nuevamente los parámetros adecuados para su uso
