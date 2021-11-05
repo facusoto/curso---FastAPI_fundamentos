@@ -24,17 +24,20 @@ class Location(BaseModel):
     city: str = Field(
         ...,
         max_length=150,
-        min_length=1
+        min_length=1,
+        example="Los Cardos"
     )
     state: str = Field(
         ...,
         max_length=150,
-        min_length=1
+        min_length=1,
+        example="Buenaventura"
     )
     country: str = Field(
         ...,
         max_length=150,
-        min_length=1
+        min_length=1,
+        example="Peluduestonia"
     )
 
 
@@ -42,22 +45,38 @@ class Person(BaseModel):
     first_name: str = Field(
         ...,
         min_length=1,
-        max_length=50
+        max_length=50,
+        example="Rodrigo"
         )
     last_name: str = Field(
         ...,
         min_length=1,
-        max_length=50
+        max_length=50,
+        example="Martinez"
         )
     age: int = Field(
         ...,
         gt=0,
-        le=115
+        le=115,
+        example=23
     )
     hair_color: Optional[HairColor] = Field(default=None)
-    is_married: Optional[bool] = Field(default=None)
+    is_married: Optional[bool] = Field(default=None, example=False)
     ip_address_str: IPvAnyAddress = Field(...)
     email: Optional[EmailStr] = Field(default=None)
+
+    # class Config:
+    #     schema_extra = {
+    #         "example": {
+    #             "first_name": "Facundo",
+    #             "last_name": "Soto",
+    #             "age": 25,
+    #             "hair_color": "Brown",
+    #             "is_married": False,
+    #             "ip_address_str": "192.168.1.1",
+    #             "email": "facusoto@hola.com"
+    #         }
+    #     }
 
 
 # Iniciamos el decorador en el path home
